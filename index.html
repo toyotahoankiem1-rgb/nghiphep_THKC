@@ -16,37 +16,20 @@
 
 <style>
   html,body{
-    margin:0;padding:0;height:100%;
+    margin:0;padding:0;height:100%;width:100%;
     background:#0d1a4d;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
-    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
   }
-  .box{text-align:center;color:#fff;padding:24px;}
-  img{width:120px;height:120px;border-radius:26px;margin-bottom:20px;box-shadow:0 8px 24px rgba(0,0,0,.35);}
-  h1{font-size:19px;margin:0 0 6px;}
-  p{font-size:13px;opacity:.75;margin:0 0 28px;}
-  a.btn{
-    display:inline-block;background:#fff;color:#0d1a4d;
-    font-weight:800;font-size:16px;padding:14px 36px;
-    border-radius:14px;text-decoration:none;
+  #appFrame{
+    position:fixed;top:0;left:0;
+    width:100%;height:100%;
+    border:none;display:block;
   }
 </style>
-
-<script>
-  // Chuyển hướng thẳng sang app GAS ngay khi vừa mở trang, không cần bấm nút.
-  // Dùng location.replace để không lưu trang chờ này vào lịch sử (back sẽ không quay lại đây).
-<script>
-  // TẠM COMMENT để add icon ra màn hình chính cho đúng. Sau khi add xong sẽ bật lại.
-  // window.location.replace("https://script.google.com/macros/s/AKfycbzJYxOuuVIEUDz1epm64AGKaYmrYl5iWmAXhCz1BQ4UwK1yVB6_vbHoIvkcMn0qMjwm/exec?app=1");
-</script>
 </head>
 <body>
-  <!-- Nội dung dưới đây chỉ hiển thị nếu trình duyệt chặn JS redirect ở trên -->
-  <div class="box">
-    <img src="icon2.png" alt="Nghỉ phép THKC">
-    <h1>Nghỉ phép THKC</h1>
-    <p>Xí nghiệp Toyota Hoàn Kiếm Hà Nội</p>
-    <a class="btn" href="https://script.google.com/macros/s/AKfycbzJYxOuuVIEUDz1epm64AGKaYmrYl5iWmAXhCz1BQ4UwK1yVB6_vbHoIvkcMn0qMjwm/exec?app=1" target="_top">Mở ứng dụng</a>
-  </div>
+  <!-- Nhúng thẳng app GAS bằng iframe, giữ nguyên domain GitHub Pages nên khi mở
+       từ icon home-screen sẽ hiển thị full màn hình, không hiện thanh địa chỉ -->
+  <iframe id="appFrame" src="https://script.google.com/macros/s/AKfycbzJYxOuuVIEUDz1epm64AGKaYmrYl5iWmAXhCz1BQ4UwK1yVB6_vbHoIvkcMn0qMjwm/exec?app=1"></iframe>
 </body>
 </html>

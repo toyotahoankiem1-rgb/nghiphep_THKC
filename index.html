@@ -9,66 +9,71 @@
 <meta name="apple-mobile-web-app-title" content="Nghỉ phép THKC">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#0d1a4d">
+<meta name="theme-color" content="#1b3fae">
 
 <link rel="apple-touch-icon" href="icon2.png">
 <link rel="icon" href="icon2.png">
 
 <style>
   html,body{
-    margin:0;padding:0;height:100%;width:100%;
-    background:#0d1a4d;
+    margin:0;
+    padding:0;
+    height:100%;
     overflow:hidden;
+    background:#1b3fae;
   }
-  #appFrame{
-    position:fixed;top:0;left:0;
-    width:100%;height:100%;
-    border:none;display:block;
+  iframe{
+    position:fixed;
+    inset:0;
+    border:none;
+    width:100%;
+    height:100dvh;
+    display:block;
   }
-
-  /* Splash screen hiện trong lúc chờ app GAS tải, tự ẩn khi xong */
-  #splash{
-    position:fixed;top:0;left:0;width:100%;height:100%;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    background:#0d1a4d;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
-    color:#fff;text-align:center;
+  #loader{
+    position:fixed;
+    inset:0;
+    background:#1b3fae;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
     z-index:10;
-    transition:opacity .4s ease;
+    transition:opacity .35s ease;
   }
-  #splash.hide{
-    opacity:0;
-    pointer-events:none;
-  }
-  #splash img{
-    width:100px;height:100px;border-radius:22px;
+  #loader img{
+    width:88px;height:88px;border-radius:20px;
     margin-bottom:18px;
     box-shadow:0 8px 24px rgba(0,0,0,.35);
-    animation:pulse 1.6s ease-in-out infinite;
   }
-  #splash h1{
-    font-size:17px;margin:0 0 6px;font-weight:700;
+  #loader .spin{
+    width:28px;height:28px;
+    border:3px solid rgba(255,255,255,.25);
+    border-top-color:#fff;
+    border-radius:50%;
+    animation:sp .8s linear infinite;
   }
-  #splash p{
-    font-size:12px;opacity:.6;margin:0;
-  }
-  @keyframes pulse{
-    0%,100%{transform:scale(1);opacity:1;}
-    50%{transform:scale(.94);opacity:.75;}
-  }
+  @keyframes sp{to{transform:rotate(360deg);}}
+  #loader.hide{opacity:0;pointer-events:none;}
 </style>
 </head>
 <body>
-  <!-- Nhúng thẳng app GAS bằng iframe, giữ nguyên domain GitHub Pages nên khi mở
-       từ icon home-screen sẽ hiển thị full màn hình, không hiện thanh địa chỉ -->
-  <iframe id="appFrame"
-    src="https://script.google.com/macros/s/AKfycbzJYxOuuVIEUDz1epm64AGKaYmrYl5iWmAXhCz1BQ4UwK1yVB6_vbHoIvkcMn0qMjwm/exec?app=1"
-    onload="document.getElementById('splash').classList.add('hide')"></iframe>
-
-  <div id="splash">
+  <div id="loader">
     <img src="icon2.png" alt="Nghỉ phép THKC">
-    <h1>Nghỉ phép THKC</h1>
-    <p>Đang tải...</p>
+    <div class="spin"></div>
   </div>
+
+  <iframe id="app" src="https://script.google.com/macros/s/AKfycbzJYxOuuVIEUDz1epm64AGKaYmrYl5iWmAXhCz1BQ4UwK1yVB6_vbHoIvkcMn0qMjwm/exec?app=1" allow="fullscreen"></iframe>
+
+  <noscript>
+    <p style="color:#fff;text-align:center;padding-top:40px;font-family:sans-serif">
+      <a style="color:#fff" href="https://script.google.com/macros/s/AKfycbzJYxOuuVIEUDz1epm64AGKaYmrYl5iWmAXhCz1BQ4UwK1yVB6_vbHoIvkcMn0qMjwm/exec?app=1">Bấm vào đây để mở ứng dụng</a>
+    </p>
+  </noscript>
+
+  <script>
+    var l = document.getElementById('loader');
+    setTimeout(function(){ l.classList.add('hide'); }, 500);
+  </script>
 </body>
 </html>
